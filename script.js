@@ -68,13 +68,26 @@ class Ant {
     this.ant.style.left = toPx(this.y);
     this.ant.style.position = "absolute";
     container.appendChild(this.ant);
-  }
+
+
+     this.ant.addEventListener("click", () => {
+    this.removeAnt();
+  });
+}
+
+removeAnt() {
+  this.ant.parentNode.removeChild(this.ant);
+}
 
      move() {
-    this.x += this.speedX * this.directionX;
-    this.y += this.speedY * this.directionY;
-    this.ant.style.top = toPx(this.y);
-    this.ant.style.left = toPx(this.x);
+      setTimeout(()=>{
+         this.x += this.speedX * this.directionX;
+         this.y += this.speedY * this.directionY;
+         this.ant.style.top = toPx(this.y);
+         this.ant.style.left = toPx(this.x);
+
+      },900);
+
   }
 
     checkWallCollision() {
