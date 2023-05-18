@@ -80,6 +80,23 @@ class Ant {
     this.removeAnt();
     counter ++;
   counterElement.textContent = "Counter: " + counter;
+
+
+        // Add blood image
+        const bloodImage = document.createElement("img");
+        bloodImage.src = "blood.jpg";
+        bloodImage.style.position = "absolute";
+        bloodImage.style.top = toPx(this.y);
+        bloodImage.style.left = toPx(this.x);
+        bloodImage.style.width = toPx(this.w);
+        bloodImage.style.height = toPx(this.h);
+        container.appendChild(bloodImage);
+
+        // Remove blood image after a delay
+        setTimeout(() => {
+            bloodImage.parentNode.removeChild(bloodImage);
+        }, 1000);
+
   });
 }
 
@@ -94,7 +111,7 @@ removeAnt() {
          this.ant.style.top = toPx(this.y);
          this.ant.style.left = toPx(this.x);
 
-      },9000);
+      },900);
 
   }
 
