@@ -12,6 +12,7 @@ container.style.width = toPx(boundaryW);
 container.style.height = toPx(boundaryH);
 container.style.border = "2px solid #000";
 container.style.position = "relative";
+container.style.backgroundColor ="white";
 
 
 // helper function that converts the numeric value to pixel  using px
@@ -73,6 +74,9 @@ class Ant {
     this.ant.style.top = toPx(this.x);
     this.ant.style.left = toPx(this.y);
     this.ant.style.position = "absolute";
+     this.ant.style.background = "transparent";
+   
+      
     container.appendChild(this.ant);
 
 
@@ -90,6 +94,7 @@ class Ant {
         bloodImage.style.left = toPx(this.x);
         bloodImage.style.width = toPx(this.w);
         bloodImage.style.height = toPx(this.h);
+        
         container.appendChild(bloodImage);
 
         // Remove blood image after a delay
@@ -104,17 +109,35 @@ removeAnt() {
   this.ant.parentNode.removeChild(this.ant);
 }
 
-     move() {
-      setTimeout(()=>{
-         this.x += this.speedX * this.directionX;
-         this.y += this.speedY * this.directionY;
-         this.ant.style.top = toPx(this.y);
-         this.ant.style.left = toPx(this.x);
+    move() {
+        setTimeout(() => {
+            this.x += this.speedX * this.directionX;
+            this.y += this.speedY * this.directionY;
+            this.ant.style.top = toPx(this.y);
+            this.ant.style.left = toPx(this.x);
 
-      },900);
+            if (this.directionX === 1 && this.directionY === 1) {
+                this.ant.style.transform = "rotate(0deg)";
+            } else if (this.directionX === 1 && this.directionY === -1) {
+                this.ant.style.transform = "rotate(90deg)";
+            } else if (this.directionX === -1 && this.directionY === 1) {
+                this.ant.style.transform = "rotate(-90deg)";
+            } else if (this.directionX === -1 && this.directionY === -1) {
+                this.ant.style.transform = "rotate(180deg)";
+            }
 
-  }
+           this.checkWallCollision();
 
+        // Check for collision with other ants
+        if (this.detectCollision(ants)) {
+            // Change direction and rotate when collision occurs
+            this.directionX = -this.directionX;
+            this.directionY = -this.directionY;
+            this.ant.style.transform = `rotate(${this.getRotationAngle()}deg)`;
+        }
+
+    }, 900);
+}
     checkWallCollision() {
         if (this.x >= boundaryW - this.w) this.directionX = -1;
         if (this.y >= boundaryH - this.h) this.directionY = -1;
@@ -146,7 +169,7 @@ detectCollision(ants) {
 
 let ants = [];
 
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 20; i++) {
   let color =
     "rgb(" +
     String(generateRandom(1, 256)) +
