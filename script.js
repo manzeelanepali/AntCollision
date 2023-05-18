@@ -35,6 +35,12 @@ function generateRandom(min = 0, max = 100) {
     return rand;
 }
 
+let counter = 0;
+let counterElement = document.createElement("div");
+counterElement.textContent = "Counter: 0";
+counterElement.classList.add("counter");
+document.body.appendChild(counterElement);
+
 class Ant {
     constructor(
         x = boundaryW / 2,
@@ -72,6 +78,8 @@ class Ant {
 
      this.ant.addEventListener("click", () => {
     this.removeAnt();
+    counter ++;
+  counterElement.textContent = "Counter: " + counter;
   });
 }
 
@@ -86,7 +94,7 @@ removeAnt() {
          this.ant.style.top = toPx(this.y);
          this.ant.style.left = toPx(this.x);
 
-      },900);
+      },9000);
 
   }
 
