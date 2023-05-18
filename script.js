@@ -41,14 +41,16 @@ let counterElement = document.createElement("div");
 counterElement.textContent = "Counter: 0";
 counterElement.classList.add("counter");
 counterElement.style.position = "absolute";
-counterElement.style.top = "120%";
-counterElement.style.left = "50%";
-counterElement.style.transform = "translate(-50%, -50%)";
+
+// counterElement.style.transform = "translate(-50%, -50%)";
 counterElement.style.backgroundColor = "#49b";
 counterElement.style.color = "#fff";
 counterElement.style.padding = "10px 20px";
 counterElement.style.fontFamily = "Arial, sans-serif";
 counterElement.style.fontSize = "24px";
+counterElement.style.top="740px";
+counterElement.style.left="250px";
+
 document.body.appendChild(counterElement);
 
 class Ant {
