@@ -127,14 +127,15 @@ removeAnt() {
             this.ant.style.top = toPx(this.y);
             this.ant.style.left = toPx(this.x);
 
+
             if (this.directionX === 1 && this.directionY === 1) {
                 this.ant.style.transform = "rotate(0deg)";
             } else if (this.directionX === 1 && this.directionY === -1) {
                 this.ant.style.transform = "rotate(90deg)";
             } else if (this.directionX === -1 && this.directionY === 1) {
-                this.ant.style.transform = "rotate(-90deg)";
+                this.ant.style.transform = "rotate(90deg)";
             } else if (this.directionX === -1 && this.directionY === -1) {
-                this.ant.style.transform = "rotate(180deg)";
+                this.ant.style.transform = "rotate(0deg)";
             }
 
            this.checkWallCollision();
